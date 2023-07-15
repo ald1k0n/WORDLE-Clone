@@ -68,13 +68,14 @@ const App = () => {
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
-    const { key } = e;
+    const { key, which } = e;
+    console.log(which);
     if (key === "Backspace") {
       EraseTheLetter();
     } else if (word.length === 5 && key === "Enter") {
       handleWin();
       handleRow();
-    } else if (key.length < 2 && word.length < 5) {
+    } else if (key.length < 2 && word.length < 5 && which !== 32) {
       handleLetter(key.toUpperCase());
     } else {
       return;
