@@ -69,7 +69,6 @@ const App = () => {
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
     const { key, which } = e;
-    console.log(which);
     if (key === "Backspace") {
       EraseTheLetter();
     } else if (word.length === 5 && key === "Enter") {

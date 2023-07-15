@@ -9,6 +9,12 @@ type Props = {
   row: number;
 };
 
+const styles = {
+  match: "bg-green-400",
+  exist: "bg-orange-200",
+  notExist: "bg-slate-200",
+};
+
 export const WordCells = (props: Props) => {
   return (
     <section className="flex w-full mt-1 md:px-12 justify-center items-center flex-wrap gap-2">
@@ -16,23 +22,19 @@ export const WordCells = (props: Props) => {
         return (
           <Fragment key={row + 1}>
             {new Array(5).fill(0).map((__, column) => {
-              const isMatch = props.guessedWord.includes(
+              const isIndex = props.guessedWord.indexOf(
                 props.data[row]?.word[column]
               );
-              const styles = {
-                true: "bg-orange-200",
-                false: "bg-slate-200",
-              } as {
-                true: string;
-                false: string;
-              };
 
               return (
                 <div
                   key={column + 1}
                   className={`w-16 h-20 ${
-                    //@ts-ignore
-                    styles[isMatch.toString()]
+                    isIndex === column
+                      ? styles["match"]
+                      : isIndex !== -1
+                      ? styles["exist"]
+                      : styles["notExist"]
                   } text-xl font-bold rounded-sm flex justify-center items-center`}
                 >
                   <>
